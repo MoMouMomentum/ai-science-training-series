@@ -1,0 +1,29 @@
+Theory Questions: (I figured out how to do the BERT assignment but it would not let me post my job and it said to contact cerebys support)
+
+I. What are the key architectural features that make these systems suitable for AI workloads?
+
+
+  AI Workloads allows to use domain specific dataflow inspired architectures. Contrary to traditional architectures that have their memory seperated from the cores, these architectures 
+  has their memory distributed across cores. This allows for more efficient matrix multiplication (Von neumann vs Data flow) and less energt cost in GPU.
+  The program can be represented graph which facilitates parallel computations.
+
+II. Identify the primary differences between these AI accelerator systems in terms of their architecture and programming models.
+
+  WSE-2 Architecture is set up as a logical 2D array with individually programmable processinf elements.
+  It achieves dataflowprogramming, uses wavelets (Data packets) to communicate between PEs.
+
+  Graph Core IPU (Intelligence processing unit) differs in its programming models which have mutliple intructions and data on multiple tiles.
+  It uses a Bulk Synchronous Parallel model (BSP) with multiple phases : local tile computation, global cross tile sychronization and data exchange. Graph core supports
+  a large stack of machine learning applications and libraries.
+
+  SambaNova Cardinal SN30RDU has 8 tile per chip with interconnected memory units and CPU. This allows for a lot of efficient memory storage,
+  and is very useful for massive data sets. It uses a spatial data flow architecture  and eliminates memory traffic and overhead.
+
+  Groq language processing units LPU building blocks works adventagously for inference tasks. It is equipped with Data switches improving data movement and reshqped, programable 
+  vector units, a massive SRAM Memory, Groq's truepoint Matrix and intruction controls allowing for various instruction queues and parallelism.
+
+III. Based on hands-on sessions, describe a typical workflow for refactoring an AI model to run on one of ALCF's AI testbeds (e.g., SambaNova or Cerebras). What tools or software stacks are typically used in this process?
+
+  Work flows depend of on implementations of machine learning tools developped by vendors such as PyTorch. For example  SambaNova is wrapped around torch.Tensor and improves upon
+  its capacities with its unique features such as its RDU, SambaFlow model conversion (Tracing and Compilation), etc...
+  
